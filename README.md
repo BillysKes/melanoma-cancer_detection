@@ -3,7 +3,7 @@
 # Table of Contents
 
 1. [Introduction](#intro)
-   - Project Overview(#)
+   - Project Overview(#overview)
    - Why Early Detection of Melanoma is important(#)
 2. [Dataset Description](#data-descr)
 3. [Data Preprocessing](#preprocessing)
