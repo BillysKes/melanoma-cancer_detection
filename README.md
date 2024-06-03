@@ -8,11 +8,11 @@
 2. [Dataset Description](#data-descr)
 3. [Data Preprocessing](#preprocessing)
    - [Data Augmentation](#)
-   - [Data normalization](#)
+   - [Data Normalization](#)
 4. [Implementation](#implementation)
    - [Transfer learning concept](#)
    - [VGG16(Convolution Neural Network)](#)
-6. [Evaluation](#)
+5. [Evaluation](#)
    - [Confusion Matrix](#)
    - [ROC Curve and AUC](#)
 
