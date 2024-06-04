@@ -8,7 +8,6 @@
 2. [Dataset Description](#data-descr)
 3. [Data Preprocessing](#preprocessing)
    - [Data Augmentation](#)
-   - [Data Normalization](#)
 4. [Implementation](#implementation)
    - [Transfer learning concept](#)
    - [VGG16(Convolution Neural Network)](#)
@@ -24,6 +23,27 @@
 https://www.kaggle.com/datasets/bhaveshmittal/melanoma-cancer-dataset/data
 
 
+
+## 3. Data Preprocessing
+
+### Data Augmentation
+```
+zoom_factor = 0.2
+crop_height = int(224 * (1 - zoom_factor))
+crop_width = int(224 * (1 - zoom_factor))
+
+train_datagen = tf.keras.Sequential([
+    Rescaling(1./255),  # Rescales pixel values to [0, 1]
+    RandomFlip("horizontal"),  # Random horizontal flip
+    RandomRotation(factor=0.2),  # Rotates images randomly up to 20 degrees
+    RandomTranslation(height_factor=0.2, width_factor=0.2),  # Shifts images vertically and horizontally up to 20%
+    RandomCrop(height=crop_height, width=crop_width),  # Randomly crop the image
+    Resizing(height=224, width=224)  # Resizes back to the original
+])
+
+test_datagen = tf.keras.Sequential([Rescaling(1./255)])
+
+```
 
 
 ## 5. Evaluation
