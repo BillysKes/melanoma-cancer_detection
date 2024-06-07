@@ -27,6 +27,7 @@ https://www.kaggle.com/datasets/bhaveshmittal/melanoma-cancer-dataset/data
 ## 3. Data Preprocessing
 
 ### Data Augmentation
+Data augmentation is a technique that can be used for image classification to expand the size of a dataset by generating new images from existing ones by flipping, cropping, rotating, shifting, zooming and more.
 ```
 zoom_factor = 0.2
 crop_height = int(224 * (1 - zoom_factor))
@@ -36,14 +37,32 @@ train_datagen = tf.keras.Sequential([
     Rescaling(1./255),  # Rescales pixel values to [0, 1]
     RandomFlip("horizontal"),  # Random horizontal flip
     RandomRotation(factor=0.2),  # Rotates images randomly up to 20 degrees
-    RandomTranslation(height_factor=0.2, width_factor=0.2),  # Shifts images vertically and horizontally up to 20%
-    RandomCrop(height=crop_height, width=crop_width),  # Randomly crop the image
-    Resizing(height=224, width=224)  # Resizes back to the original
+    RandomTranslation(height_factor=0.2, width_factor=0.2)  # Shifts images vertically and horizontally up to 20%
+
 ])
 
 test_datagen = tf.keras.Sequential([Rescaling(1./255)])
 
+train_dataset = image_dataset_from_directory(
+    "Melanoma Cancer Image Dataset/train",
+    image_size=IMAGE_SIZE,
+    batch_size=BATCH_SIZE,  # Batch size for training
+    label_mode="binary"  # Binary classification (Melanoma/Non-Melanoma)
+)
+
+test_dataset = image_dataset_from_directory(
+    'Melanoma Cancer Image Dataset/test',
+    image_size=IMAGE_SIZE,
+    batch_size=BATCH_SIZE,
+    label_mode='binary')
+
+train_dataset = train_dataset.map(lambda x, y: (train_datagen(x), y))
+test_dataset = test_dataset.map(lambda x, y: (test_datagen(x), y))
+
 ```
+
+Data augmentation techniques are specified in the train_datagen and test_datagen in order to generate new images from the existing ones. Rescaling transforms the pixel values to [0,1], RandomFlip horizontally flips an image, RandomRotation rotates an image randomly up to 20 degrees, RandomTranslation shifts an image vertically and horizontally up to 20% and RandomCrop randomly removes sections of the image.
+
 
 
 ## 5. Evaluation
