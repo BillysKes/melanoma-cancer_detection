@@ -23,6 +23,11 @@
 https://www.kaggle.com/datasets/bhaveshmittal/melanoma-cancer-dataset/data
 
 
+## 4. Implementation
+
+### Transfer learning
+
+Transfer learning is a technique where in which knowledge of an already trained ML model is re-used to a different but related problem and this knowledge reusability can improve the generalization for that related problem. That technique is commonly used when there aren't enough training data available or when a neural network exists that is already trained(pre-trained) on a similar task, and those networks are usually trained on a huge dataset. Some of the benefits gained from using transfer learning are, better perfomances and the training time reduction. 
 
 ## 3. Data Preprocessing
 
