@@ -43,25 +43,14 @@ train_datagen = tf.keras.Sequential([
 
 test_datagen = tf.keras.Sequential([Rescaling(1./255)])
 
-train_dataset = image_dataset_from_directory(
-    "Melanoma Cancer Image Dataset/train",
-    image_size=IMAGE_SIZE,
-    batch_size=BATCH_SIZE,  # Batch size for training
-    label_mode="binary"  # Binary classification (Melanoma/Non-Melanoma)
-)
 
-test_dataset = image_dataset_from_directory(
-    'Melanoma Cancer Image Dataset/test',
-    image_size=IMAGE_SIZE,
-    batch_size=BATCH_SIZE,
-    label_mode='binary')
 
 train_dataset = train_dataset.map(lambda x, y: (train_datagen(x), y))
 test_dataset = test_dataset.map(lambda x, y: (test_datagen(x), y))
 
 ```
 
-Data augmentation techniques are specified in the train_datagen and test_datagen in order to generate new images from the existing ones. Rescaling transforms the pixel values to [0,1], RandomFlip horizontally flips an image, RandomRotation rotates an image randomly up to 20 degrees, RandomTranslation shifts an image vertically and horizontally up to 20% and RandomCrop randomly removes sections of the image.
+Data augmentation techniques are specified in the train_datagen and test_datagen in order to generate new images from the existing ones. Rescaling transforms the pixel values to [0,1], RandomFlip horizontally flips an image, RandomRotation rotates an image randomly up to 20 degrees, RandomTranslation shifts an image vertically and horizontally up to 20% and RandomCrop randomly removes sections of the image. Then, map function is used to apply the data augmentation transformations(train_datagen and test_datagen) to the the train-test datasets. Lambda function takes each batch of images (x) and their corresponding labels (y), applies the transformations to the images, and returns the transformed images along with their labels. This whole process is performed at the time each image is fed into the model for training and it is called On-the-fly data augmentation.
 
 
 
