@@ -43,7 +43,17 @@ train_datagen = tf.keras.Sequential([
 
 test_datagen = tf.keras.Sequential([Rescaling(1./255)])
 
-
+train_dataset = image_dataset_from_directory(
+    "Melanoma Cancer Image Dataset/train",
+    image_size=IMAGE_SIZE,
+    batch_size=BATCH_SIZE,  # Batch size for training
+    label_mode="binary"  # Binary classification (Melanoma/Non-Melanoma)
+)
+test_dataset = image_dataset_from_directory(
+    'Melanoma Cancer Image Dataset/test',
+    image_size=IMAGE_SIZE,
+    batch_size=BATCH_SIZE,
+    label_mode='binary')
 
 train_dataset = train_dataset.map(lambda x, y: (train_datagen(x), y))
 test_dataset = test_dataset.map(lambda x, y: (test_datagen(x), y))
