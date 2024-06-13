@@ -72,6 +72,41 @@ Transfer learning is a technique where in which knowledge of an already trained 
 
 VGG16 is a convolutional neural network with 13 convolution layers and 3 fully connected layers, where there are 2 consecutive conv layers(3x3 filter size, 64 filters each, stride 1, same padding) followed by 1 max pooling layer(2x2, stride 2), and this building block is applied twice, but, in the second time there are 128 filters. Then, there are 3 consecutive conv layers(3x3 filter size, 256 filters each, same padding) followed by 1 max pooling layer(2x2, stride 2), and this building block is applied three times, but, in the second time and third time, there are 512 filters each. Finally, there are 3 consecutive fully connected layers, where the first two layers have 4096 neurons each, and the final layer has 1000 neurons, corresponding to the 1000 classes in the ILSVRC challenge.
 
+
+```
+base_model = VGG16(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+base_model.trainable = False
+
+model = Sequential([
+    base_model,
+    Flatten(),
+    Dense(256, activation='relu'),
+    Dropout(0.5),
+    Dense(1, activation='sigmoid')
+])
+
+model.compile(optimizer='adam',
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
+
+early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
+
+train_steps_per_epoch = tf.data.experimental.cardinality(train_dataset).numpy() // BATCH_SIZE
+val_steps_per_epoch = tf.data.experimental.cardinality(test_dataset).numpy() // BATCH_SIZE
+history = model.fit(
+    train_dataset,
+    steps_per_epoch=train_steps_per_epoch,
+    epochs=50,
+    validation_data=test_dataset,
+    validation_steps=val_steps_per_epoch,
+    callbacks=[early_stopping]
+)
+
+test_loss, test_acc = model.evaluate(test_dataset, steps=val_steps_per_epoch)
+print('Test accuracy:', test_acc)
+```
+
+
 ## 5. Evaluation
 
 ```
