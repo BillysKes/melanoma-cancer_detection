@@ -205,4 +205,5 @@ Epoch 43/50
 1/1 ━━━━━━━━━━━━━━━━━━━━ 2s 2s/step - accuracy: 0.8125 - loss: 0.9755
 ```
 
-![lossXaccuracyMelanoma](https://github.com/BillysKes/melanoma-cancer_detection/assets/73298709/270269e8-c894-4680-8cbf-b9adda1aaec2)
+![vgg16_81_25](https://github.com/BillysKes/melanoma-cancer_detection/assets/73298709/87ee94ae-8251-47ab-81a0-fdbf9c103f72)
+
