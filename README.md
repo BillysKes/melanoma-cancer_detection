@@ -30,6 +30,7 @@ Melanoma is the most dangerous type of skin cancer and is known for its high mor
 - Enhanced Quality of Life : Patients diagnosed early can avoid the severe symptoms and complications associated with advanced melanoma
 - Reduced Healthcare Costs : Early diagnosis and treatment of melanoma can substantially reduce healthcare costs associated with advanced cancer treatments
 
+The improved accuracy of melanoma detection can help doctors identify potential melanomas they might miss during a visual examination, and the increased efficiency can save doctors time and allowing them to focus on patients with concerning lesions flagged by the AI. So for both reasons, AI can lead to an early diagnosis.
 
 
 ## 2. Dataset Description
