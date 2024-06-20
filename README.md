@@ -13,14 +13,27 @@
    - [VGG16(Convolution Neural Network)](#)
 5. [Evaluation](#)
    - [Confusion Matrix](#)
-   - [ROC Curve and AUC](#)
 
 
+
+## 1. Introduction
+
+
+### Project Overview
+Dermatology is the branch of medicine that deals with the skin and one aspect that dermatology deals with is the management of skin diseases such as skin cancer. Computer-aided diagnostic tools can be used for more efficient and accurate detection of skin diseases by combining artificial intelligence and computer vision. This project focus on a dataset consisting of 13.900 images, each uniformly sized at 224 x 224 pixels, specifically designed to enhance the early detection of melanoma. Through the use of pre-trained convolutional neural networks, we aim to develop powerful models capable of distinguishing between benign and malignant skin lesions.
+
+### Why Early Detection of Melanoma is important
+Melanoma is the most dangerous type of skin cancer and is known for its high mortality rates. Some of the reasons why early melanoma detection is important are listed below : 
+
+- Improved Prognosis/metastasis prevention : the 5-year survival rate for early-detected melanoma is about 99%, compared to 15-20% for advanced-stage melanoma
+- Treatment effectiveness : early-stage melanomas can often be treated effectively with surgical excision alone, whereas advanced melanomas may require chemotherapy, radiation therapy, and immunotherapy
+- Enhanced Quality of Life : Patients diagnosed early can avoid the severe symptoms and complications associated with advanced melanoma
+- Reduced Healthcare Costs : Early diagnosis and treatment of melanoma can substantially reduce healthcare costs associated with advanced cancer treatments
 
 
 
 ## 2. Dataset Description
-https://www.kaggle.com/datasets/bhaveshmittal/melanoma-cancer-dataset/data
+Information about the dataset used in this project can be found at :  https://www.kaggle.com/datasets/bhaveshmittal/melanoma-cancer-dataset/data
 
 ## 3. Data Preprocessing
 
@@ -158,5 +171,7 @@ Test accuracy: 0.89550
 ```
 
 ![vgg16_20epochs](https://github.com/BillysKes/melanoma-cancer_detection/assets/73298709/488cf79d-ae9b-49ca-b55d-d20504794fbf)
+
+### Confusion Matrix
 
 
