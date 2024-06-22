@@ -94,7 +94,7 @@ model = Sequential([
     Flatten(),
     Dense(512, activation='relu', kernel_regularizer=l2(1e-3)),
     BatchNormalization(),  # Add Batch Normalization after the first Dense layer
-    Dropout(0.2),
+#    Dropout(0.2),
     Dense(1, activation='sigmoid', kernel_regularizer=l2(1e-3))
 ])
 
