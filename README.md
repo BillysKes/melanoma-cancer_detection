@@ -128,75 +128,93 @@ Found 11879 files belonging to 2 classes.
 Found 2000 files belonging to 2 classes.
 
 Epoch 1/50
-743/743 [==============================] - 132s 175ms/step - loss: 0.8795 - accuracy: 0.8087 - val_loss: 0.8754 - val_accuracy: 0.7360 - lr: 1.0000e-04
+743/743 [==============================] - 123s 162ms/step - loss: 0.8639 - accuracy: 0.8103 - val_loss: 0.6890 - val_accuracy: 0.8355 - lr: 1.0000e-04
 Epoch 2/50
-743/743 [==============================] - 120s 161ms/step - loss: 0.6589 - accuracy: 0.8315 - val_loss: 0.5701 - val_accuracy: 0.8515 - lr: 1.0000e-04
+743/743 [==============================] - 129s 174ms/step - loss: 0.6363 - accuracy: 0.8342 - val_loss: 0.5813 - val_accuracy: 0.8310 - lr: 1.0000e-04
 Epoch 3/50
-743/743 [==============================] - 129s 174ms/step - loss: 0.5744 - accuracy: 0.8376 - val_loss: 0.4867 - val_accuracy: 0.8720 - lr: 1.0000e-04
+743/743 [==============================] - 120s 161ms/step - loss: 0.5434 - accuracy: 0.8393 - val_loss: 0.5134 - val_accuracy: 0.8425 - lr: 1.0000e-04
 Epoch 4/50
-743/743 [==============================] - 128s 173ms/step - loss: 0.5211 - accuracy: 0.8321 - val_loss: 0.5868 - val_accuracy: 0.7685 - lr: 1.0000e-04
+743/743 [==============================] - 129s 174ms/step - loss: 0.4995 - accuracy: 0.8373 - val_loss: 0.4624 - val_accuracy: 0.8565 - lr: 1.0000e-04
 Epoch 5/50
-743/743 [==============================] - 128s 172ms/step - loss: 0.4782 - accuracy: 0.8385 - val_loss: 0.4977 - val_accuracy: 0.8110 - lr: 1.0000e-04
+743/743 [==============================] - 119s 160ms/step - loss: 0.4662 - accuracy: 0.8353 - val_loss: 0.5185 - val_accuracy: 0.7815 - lr: 1.0000e-04
 Epoch 6/50
-743/743 [==============================] - 127s 170ms/step - loss: 0.4506 - accuracy: 0.8437 - val_loss: 0.5660 - val_accuracy: 0.7595 - lr: 1.0000e-04
+743/743 [==============================] - 126s 170ms/step - loss: 0.4353 - accuracy: 0.8419 - val_loss: 0.5539 - val_accuracy: 0.7555 - lr: 1.0000e-04
 Epoch 7/50
-743/743 [==============================] - 123s 165ms/step - loss: 0.4305 - accuracy: 0.8461 - val_loss: 0.4391 - val_accuracy: 0.8355 - lr: 1.0000e-05
+743/743 [==============================] - 114s 153ms/step - loss: 0.4226 - accuracy: 0.8406 - val_loss: 0.4542 - val_accuracy: 0.8030 - lr: 1.0000e-04
 Epoch 8/50
-743/743 [==============================] - 107s 144ms/step - loss: 0.4148 - accuracy: 0.8526 - val_loss: 0.4227 - val_accuracy: 0.8415 - lr: 1.0000e-05
+743/743 [==============================] - 116s 156ms/step - loss: 0.4086 - accuracy: 0.8440 - val_loss: 0.8476 - val_accuracy: 0.6405 - lr: 1.0000e-04
 Epoch 9/50
-743/743 [==============================] - 125s 168ms/step - loss: 0.4161 - accuracy: 0.8492 - val_loss: 0.4356 - val_accuracy: 0.8240 - lr: 1.0000e-05
+743/743 [==============================] - 126s 169ms/step - loss: 0.3992 - accuracy: 0.8390 - val_loss: 0.5368 - val_accuracy: 0.7595 - lr: 1.0000e-04
 Epoch 10/50
-743/743 [==============================] - 113s 153ms/step - loss: 0.4055 - accuracy: 0.8507 - val_loss: 0.3868 - val_accuracy: 0.8585 - lr: 1.0000e-05
+743/743 [==============================] - 117s 157ms/step - loss: 0.3990 - accuracy: 0.8382 - val_loss: 0.5561 - val_accuracy: 0.7420 - lr: 1.0000e-04
 Epoch 11/50
-743/743 [==============================] - 104s 140ms/step - loss: 0.4060 - accuracy: 0.8484 - val_loss: 0.4104 - val_accuracy: 0.8425 - lr: 1.0000e-05
+743/743 [==============================] - 105s 141ms/step - loss: 0.3747 - accuracy: 0.8491 - val_loss: 0.3918 - val_accuracy: 0.8350 - lr: 1.0000e-05
 Epoch 12/50
-743/743 [==============================] - 125s 168ms/step - loss: 0.4012 - accuracy: 0.8475 - val_loss: 0.3931 - val_accuracy: 0.8500 - lr: 1.0000e-05
+743/743 [==============================] - 125s 169ms/step - loss: 0.3723 - accuracy: 0.8513 - val_loss: 0.3884 - val_accuracy: 0.8320 - lr: 1.0000e-05
 Epoch 13/50
-743/743 [==============================] - 114s 152ms/step - loss: 0.3975 - accuracy: 0.8491 - val_loss: 0.4036 - val_accuracy: 0.8350 - lr: 1.0000e-05
+743/743 [==============================] - 114s 153ms/step - loss: 0.3685 - accuracy: 0.8523 - val_loss: 0.3639 - val_accuracy: 0.8530 - lr: 1.0000e-05
 Epoch 14/50
-743/743 [==============================] - 104s 140ms/step - loss: 0.3827 - accuracy: 0.8571 - val_loss: 0.3640 - val_accuracy: 0.8695 - lr: 5.0000e-06
+743/743 [==============================] - 113s 152ms/step - loss: 0.3672 - accuracy: 0.8513 - val_loss: 0.3676 - val_accuracy: 0.8495 - lr: 1.0000e-05
 Epoch 15/50
-743/743 [==============================] - 115s 155ms/step - loss: 0.3833 - accuracy: 0.8600 - val_loss: 0.3658 - val_accuracy: 0.8590 - lr: 5.0000e-06
+743/743 [==============================] - 105s 141ms/step - loss: 0.3596 - accuracy: 0.8541 - val_loss: 0.3826 - val_accuracy: 0.8365 - lr: 1.0000e-05
 Epoch 16/50
-743/743 [==============================] - 125s 168ms/step - loss: 0.3889 - accuracy: 0.8520 - val_loss: 0.3707 - val_accuracy: 0.8555 - lr: 5.0000e-06
+743/743 [==============================] - 125s 168ms/step - loss: 0.3594 - accuracy: 0.8507 - val_loss: 0.3752 - val_accuracy: 0.8375 - lr: 1.0000e-05
 Epoch 17/50
-743/743 [==============================] - 104s 140ms/step - loss: 0.3873 - accuracy: 0.8496 - val_loss: 0.3617 - val_accuracy: 0.8645 - lr: 5.0000e-06
+743/743 [==============================] - 105s 142ms/step - loss: 0.3647 - accuracy: 0.8497 - val_loss: 0.3593 - val_accuracy: 0.8500 - lr: 5.0000e-06
 Epoch 18/50
-743/743 [==============================] - 124s 168ms/step - loss: 0.3816 - accuracy: 0.8539 - val_loss: 0.3688 - val_accuracy: 0.8535 - lr: 5.0000e-06
+743/743 [==============================] - 116s 156ms/step - loss: 0.3592 - accuracy: 0.8540 - val_loss: 0.3573 - val_accuracy: 0.8515 - lr: 5.0000e-06
 Epoch 19/50
-743/743 [==============================] - 104s 140ms/step - loss: 0.3761 - accuracy: 0.8542 - val_loss: 0.3591 - val_accuracy: 0.8660 - lr: 5.0000e-06
+743/743 [==============================] - 116s 156ms/step - loss: 0.3584 - accuracy: 0.8545 - val_loss: 0.3841 - val_accuracy: 0.8320 - lr: 5.0000e-06
 Epoch 20/50
-743/743 [==============================] - 115s 155ms/step - loss: 0.3706 - accuracy: 0.8600 - val_loss: 0.3505 - val_accuracy: 0.8725 - lr: 5.0000e-06
+743/743 [==============================] - 116s 156ms/step - loss: 0.3577 - accuracy: 0.8523 - val_loss: 0.3550 - val_accuracy: 0.8495 - lr: 5.0000e-06
 Epoch 21/50
-743/743 [==============================] - 115s 155ms/step - loss: 0.3803 - accuracy: 0.8538 - val_loss: 0.3574 - val_accuracy: 0.8640 - lr: 5.0000e-06
+743/743 [==============================] - 116s 156ms/step - loss: 0.3515 - accuracy: 0.8545 - val_loss: 0.3467 - val_accuracy: 0.8560 - lr: 5.0000e-06
 Epoch 22/50
-743/743 [==============================] - 115s 155ms/step - loss: 0.3839 - accuracy: 0.8497 - val_loss: 0.3545 - val_accuracy: 0.8615 - lr: 5.0000e-06
+743/743 [==============================] - 116s 156ms/step - loss: 0.3544 - accuracy: 0.8545 - val_loss: 0.3442 - val_accuracy: 0.8625 - lr: 5.0000e-06
 Epoch 23/50
-743/743 [==============================] - 115s 155ms/step - loss: 0.3764 - accuracy: 0.8538 - val_loss: 0.3532 - val_accuracy: 0.8645 - lr: 5.0000e-06
+743/743 [==============================] - 115s 155ms/step - loss: 0.3574 - accuracy: 0.8522 - val_loss: 0.3484 - val_accuracy: 0.8555 - lr: 5.0000e-06
 Epoch 24/50
-743/743 [==============================] - 124s 168ms/step - loss: 0.3764 - accuracy: 0.8526 - val_loss: 0.3640 - val_accuracy: 0.8550 - lr: 5.0000e-06
+743/743 [==============================] - 125s 169ms/step - loss: 0.3514 - accuracy: 0.8569 - val_loss: 0.3407 - val_accuracy: 0.8620 - lr: 5.0000e-06
 Epoch 25/50
-743/743 [==============================] - 113s 153ms/step - loss: 0.3680 - accuracy: 0.8585 - val_loss: 0.3557 - val_accuracy: 0.8635 - lr: 5.0000e-06
+743/743 [==============================] - 105s 141ms/step - loss: 0.3533 - accuracy: 0.8518 - val_loss: 0.3513 - val_accuracy: 0.8535 - lr: 5.0000e-06
+Epoch 26/50
+743/743 [==============================] - 125s 168ms/step - loss: 0.3497 - accuracy: 0.8574 - val_loss: 0.3464 - val_accuracy: 0.8580 - lr: 5.0000e-06
+Epoch 27/50
+743/743 [==============================] - 114s 153ms/step - loss: 0.3505 - accuracy: 0.8569 - val_loss: 0.3409 - val_accuracy: 0.8585 - lr: 5.0000e-06
+Epoch 28/50
+743/743 [==============================] - 105s 141ms/step - loss: 0.3512 - accuracy: 0.8571 - val_loss: 0.3323 - val_accuracy: 0.8620 - lr: 5.0000e-06
+Epoch 29/50
+743/743 [==============================] - 116s 156ms/step - loss: 0.3464 - accuracy: 0.8586 - val_loss: 0.3374 - val_accuracy: 0.8630 - lr: 5.0000e-06
+Epoch 30/50
+743/743 [==============================] - 116s 156ms/step - loss: 0.3508 - accuracy: 0.8560 - val_loss: 0.3426 - val_accuracy: 0.8565 - lr: 5.0000e-06
+Epoch 31/50
+743/743 [==============================] - 125s 168ms/step - loss: 0.3484 - accuracy: 0.8558 - val_loss: 0.3397 - val_accuracy: 0.8630 - lr: 5.0000e-06
+Epoch 32/50
+743/743 [==============================] - 105s 141ms/step - loss: 0.3483 - accuracy: 0.8576 - val_loss: 0.3495 - val_accuracy: 0.8480 - lr: 5.0000e-06
+Epoch 33/50
+743/743 [==============================] - 117s 157ms/step - loss: 0.3445 - accuracy: 0.8582 - val_loss: 0.3448 - val_accuracy: 0.8555 - lr: 5.0000e-06
 
-Test accuracy: 0.87250
+Test accuracy: 0.862
 
 
 Classification Report:
               precision    recall  f1-score   support
 
-      Benign       0.84      0.93      0.88      1000
-   Malignant       0.92      0.82      0.87      1000
+      Benign       0.83      0.91      0.87      1000
+   Malignant       0.90      0.81      0.85      1000
 
-    accuracy                           0.87      2000
-   macro avg       0.88      0.87      0.87      2000
-weighted avg       0.88      0.87      0.87      2000
+    accuracy                           0.86      2000
+   macro avg       0.87      0.86      0.86      2000
+weighted avg       0.87      0.86      0.86      2000
 
 ```
-
-![training_validation_plots](https://github.com/BillysKes/melanoma-cancer_detection/assets/73298709/e60d8803-4933-4eee-ba09-7957195ca787)
+![training_validation_plots](https://github.com/BillysKes/melanoma-cancer_detection/assets/73298709/2b86416c-871d-448f-9586-04ee066472bd)
 
 
 ### Confusion Matrix
+
+![confusion_matrix](https://github.com/BillysKes/melanoma-cancer_detection/assets/73298709/40386a5f-44ce-44b2-9d59-7263a52cfa85)
+
 
 
 ![confusion_matrix](https://github.com/BillysKes/melanoma-cancer_detection/assets/73298709/92589bed-6c6e-478b-bd40-05e5eba9e3af)
