@@ -217,4 +217,3 @@ weighted avg       0.87      0.86      0.86      2000
 
 
 
-![confusion_matrix](https://github.com/BillysKes/melanoma-cancer_detection/assets/73298709/92589bed-6c6e-478b-bd40-05e5eba9e3af)
