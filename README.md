@@ -181,6 +181,16 @@ Epoch 25/50
 Test accuracy: 0.87250
 
 
+Classification Report:
+              precision    recall  f1-score   support
+
+      Benign       0.84      0.93      0.88      1000
+   Malignant       0.92      0.82      0.87      1000
+
+    accuracy                           0.87      2000
+   macro avg       0.88      0.87      0.87      2000
+weighted avg       0.88      0.87      0.87      2000
+
 ```
 
 ![training_validation_plots](https://github.com/BillysKes/melanoma-cancer_detection/assets/73298709/e60d8803-4933-4eee-ba09-7957195ca787)
