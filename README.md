@@ -107,8 +107,8 @@ early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weig
 
 num_train_samples = tf.data.experimental.cardinality(train_dataset).numpy() * BATCH_SIZE
 num_test_samples = tf.data.experimental.cardinality(test_dataset).numpy() * BATCH_SIZE
-train_steps_per_epoch = tf.data.experimental.cardinality(train_dataset).numpy() // BATCH_SIZE
-val_steps_per_epoch = tf.data.experimental.cardinality(test_dataset).numpy() // BATCH_SIZE
+train_steps_per_epoch = num_train_samples // BATCH_SIZE
+val_steps_per_epoch = num_test_samples // BATCH_SIZE
 
 history = model.fit(
     train_dataset,
