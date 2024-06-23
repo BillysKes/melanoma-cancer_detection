@@ -85,6 +85,8 @@ VGG16 is a convolutional neural network with 13 convolution layers and 3 fully c
 
 
 ```
+IMAGE_SIZE = (224, 224)
+BATCH_SIZE = 16
 base_model = VGG16(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
 base_model.trainable = False
 
