@@ -41,16 +41,13 @@ Information about the dataset used in this project can be found at :  https://ww
 ### Data Augmentation
 Data augmentation is a technique that can be used for image classification to expand the size of a dataset by generating new images from existing ones by flipping, cropping, rotating, shifting, zooming and more.
 ```
-zoom_factor = 0.2
-crop_height = int(224 * (1 - zoom_factor))
-crop_width = int(224 * (1 - zoom_factor))
 
 train_datagen = tf.keras.Sequential([
     Rescaling(1./255),  # Rescales pixel values to [0, 1]
-    RandomFlip("horizontal"),  # Random horizontal flip
-    RandomRotation(factor=0.2),  # Rotates images randomly up to 20 degrees
-    RandomTranslation(height_factor=0.2, width_factor=0.2)  # Shifts images vertically and horizontally up to 20%
-
+    RandomFlip(),  # Random horizontal flip
+    RandomRotation(factor=0.25),  # Rotates images randomly up to 20 degrees
+#    RandomBrightness(factor=0.25)  # Add random brightness adjustment
+    RandomTranslation(height_factor=0.2, width_factor=0.2),  # Shifts images vertically and horizontally up to 20%
 ])
 
 test_datagen = tf.keras.Sequential([Rescaling(1./255)])
@@ -67,12 +64,12 @@ test_dataset = image_dataset_from_directory(
     batch_size=BATCH_SIZE,
     label_mode='binary')
 
-train_dataset = train_dataset.map(lambda x, y: (train_datagen(x), y))
-test_dataset = test_dataset.map(lambda x, y: (test_datagen(x), y))
+train_dataset = train_dataset.map(lambda x, y: (train_datagen(x), y)).repeat()
+test_dataset = test_dataset.map(lambda x, y: (test_datagen(x), y)).repeat()
 
 ```
 
-Data augmentation techniques are specified in the train_datagen and test_datagen in order to generate new images from the existing ones. Rescaling transforms the pixel values to [0,1], RandomFlip horizontally flips an image, RandomRotation rotates an image randomly up to 20 degrees, RandomTranslation shifts an image vertically and horizontally up to 20% and RandomCrop randomly removes sections of the image. Then, map function is used to apply the data augmentation transformations(train_datagen and test_datagen) to the the train-test datasets. Lambda function takes each batch of images (x) and their corresponding labels (y), applies the transformations to the images, and returns the transformed images along with their labels. This whole process is performed at the time each image is fed into the model for training and it is called On-the-fly data augmentation.
+Data augmentation techniques are specified in the train_datagen and test_datagen in order to generate new images from the existing ones. Rescaling transforms the pixel values to [0,1], RandomFlip horizontally flips an image horizontally or vertically, RandomRotation rotates an image randomly up to 20 degrees, and RandomTranslation shifts an image vertically and horizontally up to 20%. Then, map function is used to create augmented versions of the training images on-the-fly. Lambda function takes each batch of images (x) and their corresponding labels (y), applies the transformations to the images, and returns the transformed images along with their labels. This whole process is performed at the time each image is fed into the model for training and it is called On-the-fly data augmentation.
 
 
 ## 4. Implementation
@@ -94,12 +91,15 @@ base_model.trainable = False
 model = Sequential([
     base_model,
     Flatten(),
-    Dense(256, activation='relu'),
-    Dropout(0.5),
-    Dense(1, activation='sigmoid')
+    Dense(512, activation='relu', kernel_regularizer=l2(1e-3)),
+    BatchNormalization(),  # Add Batch Normalization after the first Dense layer
+#    Dropout(0.2),
+    Dense(1, activation='sigmoid', kernel_regularizer=l2(1e-3))
 ])
 
-model.compile(optimizer='adam',
+reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=3, min_lr=5e-6)
+
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
               loss='binary_crossentropy',
               metrics=['accuracy'])
 
@@ -107,14 +107,19 @@ early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_wei
 
 train_steps_per_epoch = tf.data.experimental.cardinality(train_dataset).numpy() // BATCH_SIZE
 val_steps_per_epoch = tf.data.experimental.cardinality(test_dataset).numpy() // BATCH_SIZE
+
+early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
+
 history = model.fit(
     train_dataset,
     steps_per_epoch=train_steps_per_epoch,
     epochs=50,
     validation_data=test_dataset,
     validation_steps=val_steps_per_epoch,
-    callbacks=[early_stopping]
+    callbacks=[early_stopping, reduce_lr]
 )
+
+
 
 test_loss, test_acc = model.evaluate(test_dataset, steps=val_steps_per_epoch)
 print('Test accuracy:', test_acc)
@@ -122,6 +127,36 @@ print('Test accuracy:', test_acc)
 
 
 ## 5. Evaluation
+
+```
+# Making predictions on the test dataset
+test_dataset = test_dataset.take(val_steps_per_epoch) 
+test_images, test_labels = zip(*(list(test_dataset.as_numpy_iterator())))
+test_images = np.concatenate(test_images, axis=0)
+test_labels = np.concatenate(test_labels, axis=0)
+
+predictions = model.predict(test_images)
+predicted_labels = (predictions > 0.5).astype(int).reshape(-1)
+
+# Confusion matrix
+conf_matrix = confusion_matrix(test_labels, predicted_labels)
+print("Confusion Matrix:")
+print(conf_matrix)
+
+# Plotting the confusion matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues')
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted')
+plt.ylabel('True')
+plt.savefig('confusion_matrix.png')
+
+
+# Classification report
+class_report = classification_report(test_labels, predicted_labels, target_names=['Benign', 'Malignant'])
+print("Classification Report:")
+print(class_report)
+```
 
 ```
 Found 11879 files belonging to 2 classes.
