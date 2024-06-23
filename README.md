@@ -85,6 +85,9 @@ VGG16 is a convolutional neural network with 13 convolution layers and 3 fully c
 
 
 ```
+gpus = tf.config.experimental.list_physical_devices('GPU')
+print("Num GPUs Available:", len(tf.config.list_physical_devices('GPU')))
+
 IMAGE_SIZE = (224, 224)
 BATCH_SIZE = 16
 base_model = VGG16(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
@@ -127,7 +130,7 @@ test_loss, test_acc = model.evaluate(test_dataset, steps=val_steps_per_epoch)
 print('Test accuracy:', test_acc)
 ```
 
-The pre-trained VGG16 model is loaded as a base model and it is built with a flatten layer with batch normalization, a fully connected layer of 512 neurons and a final layer(with L2 regularization to this layer and the previous) of a single neuron for binary classification. The model is compiled with the Adam optimizer, binary cross-entropy loss, and accuracy metrics. Also, early stopping(patience=5) and learning rate reduction callbacks are applied, and the fixed size of epochs are 50.
+The script is executed on wsl2(Windows Subsystem for Linux) environment in order to leverage the GPU and speed up the training of the model. The pre-trained VGG16 model is loaded as a base model and it is built with a flatten layer with batch normalization, a fully connected layer of 512 neurons and a final layer(with L2 regularization to this layer and the previous) of a single neuron for binary classification. The model is compiled with the Adam optimizer, binary cross-entropy loss, and accuracy metrics. Also, early stopping(patience=5) and learning rate reduction callbacks are applied, and the fixed size of epochs are 50.
 
 
 ## 5. Evaluation
@@ -165,6 +168,8 @@ print(class_report)
 ```
 Found 11879 files belonging to 2 classes.
 Found 2000 files belonging to 2 classes.
+
+Num GPUs Available: 1
 
 Epoch 1/50
 743/743 [==============================] - 123s 162ms/step - loss: 0.8639 - accuracy: 0.8103 - val_loss: 0.6890 - val_accuracy: 0.8355 - lr: 1.0000e-04
