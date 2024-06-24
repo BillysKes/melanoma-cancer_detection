@@ -7,7 +7,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Flatten, Dense, Dropout, BatchNormalization
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.layers import (
-    RandomFlip, RandomRotation, RandomTranslation, RandomCrop, RandomBrightness, Resizing, Rescaling)
+    RandomFlip, RandomRotation, RandomTranslation, RandomCrop, RandomBrightness, Resizing, Rescaling, CenterCrop)
 from tensorflow.keras.utils import image_dataset_from_directory
 from tensorflow.keras.regularizers import l2
 from tensorflow.keras.callbacks import ReduceLROnPlateau
@@ -19,9 +19,6 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from tensorflow.keras.mixed_precision import Policy
-
-
-K.clear_session()
 
 # Ensure GPU is being used
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0'
@@ -40,24 +37,24 @@ print("Num GPUs Available:", len(tf.config.list_physical_devices('GPU')))
 
 
 print(tf.test.is_built_with_cuda())
-IMAGE_SIZE = (224, 224)
+IMAGE_SIZE = (112, 112)
 BATCH_SIZE = 16
 
 
-base_model = VGG16(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+base_model = VGG16(weights='imagenet', include_top=False, input_shape=(112, 112, 3))
 base_model.trainable = False
 
-zoom_factor = 0.2
-crop_height = int(IMAGE_SIZE[0] * (1 - zoom_factor))
-crop_width = int(IMAGE_SIZE[1] * (1 - zoom_factor))
-
 train_datagen = tf.keras.Sequential([
-    Rescaling(1./255),  # Rescales pixel values to [0, 1]
+    Resizing(height=112,width=112, interpolation="bilinear"),
     RandomFlip(),  # Random horizontal flip
     RandomRotation(factor=0.25),  # Rotates images randomly up to 20 degrees
 #    RandomBrightness(factor=0.25)  # Add random brightness adjustment
-    RandomTranslation(height_factor=0.2, width_factor=0.2),  # Shifts images vertically and horizontally up to 20%
+#    RandomTranslation(height_factor=0.2, width_factor=0.2),  # Shifts images vertically and horizontally up to 20%
+    CenterCrop(height=112, width=112),  # Center crops to target size
+    Rescaling(1./255)
 ])
+
+test_datagen=tf.keras.Sequential([Resizing(height=112,width=112, interpolation="bilinear"), CenterCrop(height=112, width=112), Rescaling(1./255)])
 
 train_dataset = image_dataset_from_directory(
     "Melanoma Cancer Image Dataset/train",
@@ -79,8 +76,8 @@ num_test_samples = tf.data.experimental.cardinality(test_dataset).numpy() * BATC
 print("Number of train samples:", num_train_samples)
 print("Number of test samples:", num_test_samples)
 
-train_dataset = train_dataset.map(lambda x, y: (train_datagen(x), y)).repeat()
-test_dataset = test_dataset.map(lambda x, y: (Rescaling(1./255)(x), y)).repeat()
+train_dataset = train_dataset.map(lambda x, y: (train_datagen(x), y))
+test_dataset = test_dataset.map(lambda x, y: (test_datagen(x), y))
 
 # Calculate steps per epoch based on dataset size
 train_steps_per_epoch = num_train_samples // BATCH_SIZE
@@ -94,7 +91,7 @@ model = Sequential([
     Flatten(),
     Dense(512, activation='relu', kernel_regularizer=l2(1e-3)),
     BatchNormalization(),  # Add Batch Normalization after the first Dense layer
-#    Dropout(0.2),
+#    Dropout(0.1),
     Dense(1, activation='sigmoid', kernel_regularizer=l2(1e-3))
 ])
 
@@ -104,7 +101,7 @@ model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
               loss='binary_crossentropy',
               metrics=['accuracy'])
 
-early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
+early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
 
 history = model.fit(
     train_dataset,
