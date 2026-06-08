@@ -120,7 +120,7 @@ test_images, test_labels = zip(*(list(test_dataset.as_numpy_iterator())))
 test_images = np.concatenate(test_images, axis=0)
 test_labels = np.concatenate(test_labels, axis=0)
 
-predictions = model.predict(test_images)
+predictions = model.predict(test_dataset)
 predicted_labels = (predictions > 0.5).astype(int).reshape(-1)
 
 # Confusion matrix & Report
